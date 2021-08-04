@@ -13,34 +13,40 @@
 import Swift
 @_implementationOnly import _SwiftConcurrencyShims
 
-/// Property wrapper that defines a task-local value key.
+/// Property wrapper that defines a key for task-local storage.
 ///
-/// A task-local value is a value that can be bound and read in the context of a
-/// `Task`. It is implicitly carried with the task, and is accessible by any
-/// child tasks the task creates (such as TaskGroup or `async let` created tasks).
+/// A task-local value is a value
+/// that can be accessed in the context of a task.
+/// It's implicitly carried with the task, and is accessible by any
+/// child tasks the task creates,
+/// for example by using `TaskGroup` or `async`-`let`.
+/// The value that a task sets for a task-local value
+/// is guaranteed to not outlive that task.
 ///
-/// ### Task-local declarations
-///
-/// Task locals must be declared as static properties (or global properties,
-/// once property wrappers support these), like this:
+/// A task-local value must be declared as a static stored constant or property --
+/// for example:
 ///
 ///     enum TracingExample {
-///         @TaskLocal
-///         static let traceID: TraceID?
+///         @TaskLocal static let traceID: TraceID?
 ///     }
 ///
-/// ### Default values
-/// Task local values of optional types default to `nil`. It is possible to define
-/// not-optional task-local values, and an explicit default value must then be
-/// defined instead.
 ///
-/// The default value is returned whenever the task-local is read
-/// from a context which either: has no task available to read the value from
+/// ### Default Values
+///
+/// When you declare a task-local value, you specify its initial value,
+/// which is also used as its default value.
+/// The one exception is optionals,
+/// which have a default value of `nil` if you don't specify an initial value.
+/// The default value is used whenever the task-local
+/// is read from a context which either has no task available to read the value from
 /// (e.g. a synchronous function, called without any asynchronous function in its call stack),
+/// ◊TR: or... what?
 ///
+/// ### Reading Task-Local Values
 ///
-/// ### Reading task-local values
-/// Reading task local values is simple and looks the same as-if reading a normal
+/// Any code running within a task can read that task's task-local storage,
+/// including synchronous functions that are called from within the task.
+/// Reading task local values and looks the same as reading a normal
 /// static property:
 ///
 ///     guard let traceID = TracingExample.traceID else {
@@ -57,15 +63,19 @@ import Swift
 /// from an asynchronous function (!), will immediately return the task-local's
 /// default value.
 ///
-/// ### Binding task-local values
-/// Task local values cannot be `set` directly and must instead be bound using
-/// the scoped `$traceID.withValue() { ... }` operation. The value is only bound
+/// ◊TODO: performance considerations: this can be SLOW
+///
+/// ### Binding Task-local Values
+///
+/// Task-local values cannot be set directly and must instead be bound using
+/// the `withValue()` method on the property's projected value. The value is only bound
 /// for the duration of that scope, and is available to any child tasks which
 /// are created within that scope.
 ///
-/// Detached tasks do not inherit task-local values, however tasks created using
-/// the `Task { ... }` initializer do inherit task-locals by copying them to the
-/// new asynchronous task, even though it is an un-structured task.
+/// Detached tasks don't inherit task-local values,
+/// however tasks created using the `Task.init()` initializer
+/// inherit task-locals by copying them to the new asynchronous task,
+/// even though it is an unstructured task.
 ///
 /// ### Examples
 ///
@@ -78,11 +88,13 @@ import Swift
 ///       print("traceID: \(traceID)") // traceID: 1234
 ///       call() // traceID: 1234
 ///
-///       Task { // unstructured tasks do inherit task locals by copying
+///       // Unstructured tasks inherit task locals by copying.
+///       Task {
 ///         call() // traceID: 1234
 ///       }
 ///
-///       Task.detached { // detached tasks do not inherit task-local values
+///       // Detached tasks don't inherit task-local values.
+///       Task.detached {
 ///         call() // traceID: nil
 ///       }
 ///     }
