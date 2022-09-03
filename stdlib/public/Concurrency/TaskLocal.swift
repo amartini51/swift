@@ -30,34 +30,35 @@ import Swift
 ///         @TaskLocal static let traceID: TraceID?
 ///     }
 ///
-///
 /// ### Default Values
 ///
 /// When you declare a task-local value, you specify its initial value,
 /// which is also used as its default value.
 /// The one exception is optionals,
 /// which have a default value of `nil` if you don't specify an initial value.
-/// The default value is used whenever the task-local
-/// is read from a context which either has no task available to read the value from
-/// (e.g. a synchronous function, called without any asynchronous function in its call stack),
-/// ◊TR: or... what?
+/// The default value is used if the task-local value
+/// is read from a context that has doesn't have any current task ---
+/// for example, a synchronous function
+/// that's called without any asynchronous function in its call stack.
 ///
 /// ### Reading Task-Local Values
 ///
 /// Any code running within a task can read that task's task-local storage,
 /// including synchronous functions that are called from within the task.
-/// Reading task local values and looks the same as reading a normal
-/// static property:
+/// Reading task local values
+/// looks the same as reading a normal static property:
 ///
 ///     guard let traceID = TracingExample.traceID else {
-///       print("no trace id")
-///       return
+///         print("no trace id")
+///         return
 ///     }
 ///     print(traceID)
 ///
-/// It is possible to perform task-local value reads from either asynchronous
-/// or synchronous functions. Within asynchronous functions, as a "current" task
-/// is always guaranteed to exist, this will perform the lookup in the task local context.
+/// You can read task-local values
+/// from both asynchronous and synchronous functions.
+/// Within asynchronous functions,
+/// as a "current" task is always guaranteed to exist,
+/// this will perform the lookup in the task local context.
 ///
 /// A lookup made from the context of a synchronous function, that is not called
 /// from an asynchronous function (!), will immediately return the task-local's
