@@ -91,12 +91,19 @@
 ///
 /// You can access individual array elements through a subscript. The first
 /// element of a nonempty array is always at index zero. You can subscript an
-/// array with any integer from zero up to, but not including, the count of
-/// the array. Using a negative number or an index equal to or greater than
-/// `count` triggers a runtime error. For example:
+/// array with any integer up to, but not including, the count of
+/// the array. For example:
 ///
 ///     print(oddNumbers[0], oddNumbers[3], separator: ", ")
 ///     // Prints "1, 7"
+///
+/// Trying to access any of following indexes triggers a runtime error:
+///
+/// * A negative number
+/// * A number equal to `count`
+/// * A number greater than count
+///
+/// For example:
 ///
 ///     print(emptyDoubles[0])
 ///     // Triggers runtime error: Index out of range
