@@ -76,12 +76,27 @@ public typealias CFloat = Float
 /// The C 'double' type.
 public typealias CDouble = Double
 
-/// The C 'long double' type.
+// The triple-slash documentation comments below are duplicated to work around
+// a limitation in DocC, where it doesn't apply comments to each branch of the
+// pound-if (rdar://128616139).  The list documentation doesn't cover all
+// platforms, only the platforms that Swift officially supports.
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
 // On Darwin, long double is Float80 on x86, and Double otherwise.
 #if arch(x86_64) || arch(i386)
+/// The C 'long double' type.
+///
+/// This type's definition varies by platform,
+/// to match the variable definition of the C `long double` type.
+/// On Apple silicon, `CLongLong` is a type alias for `Float80`.
+/// On Intel, `CLongLong` is a type alias for `Double` (`Float64`).
 public typealias CLongDouble = Float80
 #else
+/// The C 'long double' type.
+///
+/// This type's definition varies by platform,
+/// to match the variable definition of the C `long double` type.
+/// On Apple silicon, `CLongLong` is a type alias for `Float80`.
+/// On Intel, `CLongLong` is a type alias for `Double` (`Float64`).
 public typealias CLongDouble = Double
 #endif
 #elseif os(Windows)
