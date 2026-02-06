@@ -1224,6 +1224,7 @@ extension ArraySlice {
 @available(SwiftCompatibilitySpan 5.0, *)
 @_originallyDefinedIn(module: "Swift;CompatibilitySpan", SwiftCompatibilitySpan 6.2)
 extension ArraySlice {
+  /// Borrow the underlying initialized memory for read-only access.
   @available(SwiftCompatibilitySpan 5.0, *)
   @_alwaysEmitIntoClient
   public var span: Span<Element> {
@@ -1320,6 +1321,7 @@ extension ArraySlice {
 @available(SwiftCompatibilitySpan 5.0, *)
 @_originallyDefinedIn(module: "Swift;CompatibilitySpan", SwiftCompatibilitySpan 6.2)
 extension ArraySlice {
+  /// Exclusively borrow the underlying initialized memory for mutation.
   @_alwaysEmitIntoClient
   public var mutableSpan: MutableSpan<Element> {
     @lifetime(&self)

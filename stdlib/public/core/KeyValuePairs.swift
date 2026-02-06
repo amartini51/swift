@@ -128,6 +128,7 @@ extension KeyValuePairs: RandomAccessCollection {
 @available(SwiftCompatibilitySpan 5.0, *)
 @_originallyDefinedIn(module: "Swift;CompatibilitySpan", SwiftCompatibilitySpan 6.2)
 extension KeyValuePairs {
+  /// Borrow the underlying initialized memory for read-only access.
   @available(SwiftCompatibilitySpan 5.0, *)
   @_alwaysEmitIntoClient
   public var span: Span<Element> {

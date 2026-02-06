@@ -1741,6 +1741,7 @@ extension Array {
     return try unsafe _buffer.withUnsafeBufferPointer(body)
   }
 
+  /// Borrow the underlying initialized memory for read-only access.
   @available(SwiftStdlib 6.2, *)
   public var span: Span<Element> {
     @lifetime(borrow self)
@@ -1860,6 +1861,7 @@ extension Array {
     return try unsafe body(&inoutBufferPointer)
   }
 
+  /// Exclusively borrow the underlying initialized memory for mutation.
   @available(SwiftStdlib 6.2, *)
   @_alwaysEmitIntoClient
   public var mutableSpan: MutableSpan<Element> {

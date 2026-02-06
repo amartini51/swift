@@ -163,6 +163,7 @@ extension CollectionOfOne: RandomAccessCollection, MutableCollection {
 @_originallyDefinedIn(module: "Swift;CompatibilitySpan", SwiftCompatibilitySpan 6.2)
 extension CollectionOfOne {
 
+  /// Borrow the underlying initialized memory for read-only access.
   @_alwaysEmitIntoClient
   public var span: Span<Element> {
     @lifetime(borrow self)
@@ -173,6 +174,7 @@ extension CollectionOfOne {
     }
   }
 
+  /// Exclusively borrow the underlying initialized memory for mutation.
   @_alwaysEmitIntoClient
   public var mutableSpan: MutableSpan<Element> {
     @lifetime(&self)
