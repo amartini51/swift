@@ -14,8 +14,8 @@
 import Swift
 #endif
 
-/// `Span<Element>` represents a contiguous region of memory
-/// which contains initialized instances of `Element`.
+/// A contiguous region of memory that contains initialized instances of a
+/// given element.
 ///
 /// A `Span` instance is a non-owning, non-escaping view into memory.
 /// When a `Span` is created, it inherits the lifetime of the container

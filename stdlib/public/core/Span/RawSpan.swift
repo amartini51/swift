@@ -14,8 +14,7 @@
 import Swift
 #endif
 
-/// `RawSpan` represents a contiguous region of memory
-/// which contains initialized bytes.
+/// A contiguous region of memory that contains initialized bytes.
 ///
 /// A `RawSpan` instance is a non-owning, non-escaping view into memory.
 /// When a `RawSpan` is created, it inherits the lifetime of the container

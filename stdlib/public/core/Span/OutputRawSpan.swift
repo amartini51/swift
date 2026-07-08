@@ -14,8 +14,8 @@
 import Swift
 #endif
 
-// OutputRawSpan is a reference to a contiguous region of memory which starts
-// some number of initialized bytes, followed by uninitialized memory.
+// A contiguous region of memory that contains some number of initialized
+// bytes, followed by uninitialized memory.
 @safe
 @frozen
 @available(SwiftCompatibilitySpan 5.0, *)

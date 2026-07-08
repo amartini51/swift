@@ -14,9 +14,10 @@
 import Swift
 #endif
 
-// `OutputSpan` is a reference to a contiguous region of memory that starts with
-// some number of initialized `Element` instances followed by uninitialized
-// memory. It provides operations to access the items it stores, as well as to
+// A contiguous region of memory that contains some number of initialized
+// instances of a given element, followed by uninitialized memory.
+//
+// It provides operations to access the items it stores, as well as to
 // add new elements and to remove existing ones.
 @safe
 @frozen

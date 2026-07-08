@@ -14,8 +14,7 @@
 import Swift
 #endif
 
-// A MutableRawSpan represents a span of memory which
-// contains initialized `Element` instances.
+/// A mutable, contiguous region of memory that contains initialized bytes.
 @safe
 @frozen
 @available(SwiftCompatibilitySpan 5.0, *)

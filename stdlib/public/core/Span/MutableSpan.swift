@@ -14,8 +14,8 @@
 import Swift
 #endif
 
-// A MutableSpan<Element> represents a span of memory which
-// contains initialized `Element` instances.
+/// A mutable, contiguous region of memory that contains initialized instances
+/// of a given element.
 @safe
 @frozen
 @available(SwiftCompatibilitySpan 5.0, *)
