@@ -192,7 +192,7 @@ extension Span where Element: ~Copyable {
 @_originallyDefinedIn(module: "Swift;CompatibilitySpan", SwiftCompatibilitySpan 6.2)
 extension MutableSpan where Element: ~Copyable {
 
-  /// Borrow the underlying initialized memory for read-only access.
+  /// The underlying initialized memory, borrowed for read-only access.
   @_alwaysEmitIntoClient
   @_transparent
   public var span: Span<Element> {

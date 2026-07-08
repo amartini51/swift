@@ -1289,7 +1289,7 @@ extension ContiguousArray {
 @available(SwiftCompatibilitySpan 5.0, *)
 @_originallyDefinedIn(module: "Swift;CompatibilitySpan", SwiftCompatibilitySpan 6.2)
 extension ContiguousArray {
-  /// Borrow the underlying initialized memory for read-only access.
+  /// The underlying initialized memory, borrowed for read-only access.
   @_alwaysEmitIntoClient
   public var span: Span<Element> {
     @lifetime(borrow self)
@@ -1385,7 +1385,7 @@ extension ContiguousArray {
 @available(SwiftCompatibilitySpan 5.0, *)
 @_originallyDefinedIn(module: "Swift;CompatibilitySpan", SwiftCompatibilitySpan 6.2)
 extension ContiguousArray {
-  /// Exclusively borrow the underlying initialized memory for mutation.
+  /// The underlying initialized memory, exclusively borrowed for mutation.
   @_alwaysEmitIntoClient
   public var mutableSpan: MutableSpan<Element> {
     @lifetime(&self)

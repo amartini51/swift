@@ -583,7 +583,7 @@ extension InlineArray where Element: ~Copyable {
 
 @available(SwiftStdlib 6.2, *)
 extension InlineArray where Element: ~Copyable {
-  /// Borrow the underlying initialized memory for read-only access.
+  /// The underlying initialized memory, borrowed for read-only access.
   @available(SwiftStdlib 6.2, *)
   @_alwaysEmitIntoClient
   public var span: Span<Element> {
@@ -599,7 +599,7 @@ extension InlineArray where Element: ~Copyable {
     }
   }
 
-  /// Exclusively borrow the underlying initialized memory for mutation.
+  /// The underlying initialized memory, exclusively borrowed for mutation.
   @available(SwiftStdlib 6.2, *)
   @_alwaysEmitIntoClient
   public var mutableSpan: MutableSpan<Element> {
